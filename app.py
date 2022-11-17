@@ -95,7 +95,7 @@ def attractions_api():
                 "mrt": result[i][7],
                 "lat": result[i][8],
                 "lng": result[i][9],
-                "images": [result[i][10]]
+                "images": result[i][10].split(",")
             }
             outcome.append(data_dict)
 
@@ -156,13 +156,11 @@ def categories_api():
     cursor = connection.cursor()
     sql = "SELECT DISTINCT category FROM taipei_attractions"
     cursor.execute(sql)
-    result = cursor.fetchall()
+    result = [item[0] for item in cursor.fetchall()]
 
     if result:
         return {
-            "data": [
-                "string"
-            ]
+            "data": result
         }, 200  # 正常運作
 
     else:
@@ -172,4 +170,4 @@ def categories_api():
         }, 500  # 伺服器內部錯誤
 
 
-app.run(port=3000, debug=True)
+app.run(host='0.0.0.0', port=3000, debug=True)

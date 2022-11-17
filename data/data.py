@@ -41,8 +41,8 @@ try:  # 連接 MySQL 資料庫
             text = data_list[i]['file']
             image_fil = re.findall(
                 "(?:https\:)?\/\/.*\.(?:jpg|JPG|png|PNG)", text)
-            image_fil = image_fil[0].replace('http', '","http')
-            images = image_fil[2:]
+            image_fil = image_fil[0].replace('http', ',http')
+            images = image_fil[1:]
 
             sql_insert = "INSERT INTO taipei_attractions(taipeiId, name, category, description, address, transport, mrt, lat, lng, images) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
             new_data = (taipeiId, name, category, description,
