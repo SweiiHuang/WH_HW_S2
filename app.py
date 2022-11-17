@@ -5,7 +5,7 @@ import re
 import mysql.connector
 import mysql.connector.pooling
 from mysql.connector import Error
-from data.mySQL import MySQLPassword
+from mySQL import MySQLPassword
 
 # Original-------------------
 app = Flask(__name__)

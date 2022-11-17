@@ -21,7 +21,7 @@ try:  # 連接 MySQL 資料庫
     sql = "CREATE TABLE taipei_attractions(id BIGINT PRIMARY KEY AUTO_INCREMENT,taipeiId BIGINT, name VARCHAR(255) NOT NULL,category VARCHAR(255),description VARCHAR(4000),address VARCHAR(255),transport VARCHAR(4000),mrt VARCHAR(255),lat FLOAT,lng FLOAT,images VARCHAR(4000));"
     cursor.execute(sql)
 
-    with open("/Users/WH_HW_S2/taipei-day-trip/data/taipei-attractions.json", mode="r", encoding="utf-8") as file:
+    with open("/Users/Desktop/taipei-day-trip desk/data/taipei-attractions.json", mode="r", encoding="utf-8") as file:
         data = json.load(file)
 
         data_list = data['result']['results']
@@ -39,9 +39,10 @@ try:  # 連接 MySQL 資料庫
             lat = data_list[i]['latitude']
             lng = data_list[i]['longitude']
             text = data_list[i]['file']
-            image = re.findall(
+            image_fil = re.findall(
                 "(?:https\:)?\/\/.*\.(?:jpg|JPG|png|PNG)", text)
-            images = image[0]
+            image_fil = image_fil[0].replace('http', '","http')
+            images = image_fil[2:]
 
             sql_insert = "INSERT INTO taipei_attractions(taipeiId, name, category, description, address, transport, mrt, lat, lng, images) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"
             new_data = (taipeiId, name, category, description,
