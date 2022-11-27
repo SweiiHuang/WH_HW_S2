@@ -14,14 +14,14 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # Original-------------------
 app.config["JSON_SORT_KEYS"] = False
 CORS(app)
-# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+
 
 # MySQL configurations
 dbconfig = {
     "host": "localhost",
     "database": "attractions_db",
     "user": "root",
-    "password": "root2013aws",
+    "password": "root20137aws",
 }
 # create connection pool
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(

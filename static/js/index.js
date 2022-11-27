@@ -1,11 +1,11 @@
 let page = 0;
-let keyword = null;
+let keyword = "";
 
 const src_categories = `/api/categories`
 const showCategory = document.querySelector(".inputArea")
 const spotInfo = document.getElementById("spotContainer");
 
-// 設定全域變數isLoading 來追蹤、記錄目前頁面是否正在載入 API，一開始設定為 false
+//設定全域變數isLoading 來追蹤、記錄目前頁面是否正在載入 API，一開始設定為 false
 let isLoading = false;
 const observer = new IntersectionObserver((entries) => {
     if (entries[0].intersectionRatio > 0) {
@@ -14,6 +14,7 @@ const observer = new IntersectionObserver((entries) => {
 });
 
 observer.observe(document.querySelector("footer"));
+
 
 
 //取得景點分類
@@ -50,10 +51,39 @@ document.addEventListener("click", function () {
     hideCAT.style.display = "none";
 }, true)
 
+// 取得關鍵字搜尋
+let search = document.querySelector(".searchBtn")
+search.addEventListener("click", (e) => {
+    // console.log('e', e);
+    searchAttractions();
+});
 
-function fetchAttractions(page, keyword) {
+
+async function searchAttractions() {
+    page = 0
     keyword = document.querySelector(".inputArea").value;
     src = `/api/attractions?page=${page}&keyword=${keyword}`;
+
+    spotInfo.innerHTML = "";
+
+    console.log('searchAttractions', isLoading);
+
+    if (isLoading == false) {
+        isLoading = true; //使用 fetch() 之前，將 isLoading 設定為 true，表示現在開始要呼叫 API 了
+
+        const response = await fetch(src);
+        const parsedData = await response.json();
+        displayAttractions(parsedData)
+    }
+}
+
+
+// 抓取景點資料
+function fetchAttractions(page, keyword) {
+    // keyword = document.querySelector(".inputArea").value;
+    src = `/api/attractions?page=${page}&keyword=${keyword}`;
+
+    console.log('fetchAttractions', isLoading)
 
 
     if (isLoading == false) {
@@ -65,6 +95,7 @@ function fetchAttractions(page, keyword) {
     }
 }
 
+//呈現景點畫面
 function displayAttractions(data) {
     let attractionsData = data["data"];
     if (attractionsData.length == 0) {
@@ -132,18 +163,5 @@ function displayAttractions(data) {
     // fetch() 載入完畢，取得後端回應後，將 isLoading 設定為 false，表示現在沒有在載入 API 了
 }
 
-function searchAttractions() {
-    page = 0
-    keyword = document.querySelector(".inputArea").value;
-    src = `/api/attractions?page=${page}&keyword=${keyword}`;
-
-    if (isLoading == false) {
-        isLoading = true; //使用 fetch() 之前，將 isLoading 設定為 true，表示現在開始要呼叫 API 了
-
-        fetch(src).then((response) => {
-            return response.json();
-        }).then(displayAttractions);
-    }
-}
 
 
