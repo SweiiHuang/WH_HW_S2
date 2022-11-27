@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://18.178.97.253:3000/api/attractions",
+            "request": "launch",
+            "url": "http://18.178.97.253:3000/api/attractions"
+        }
+    ]
+}
