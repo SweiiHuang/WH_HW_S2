@@ -1,0 +1,452 @@
+@import url(https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap);
+
+* {
+    /*Selects all elements*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+
+.topBox {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 54px;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    background: #FFFFFF;
+}
+
+.topNav {
+    position: relative;
+    width: 1200px;
+    height: 34px;
+    left: 0px;
+    top: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.topNavLeft {
+    position: absolute;
+    width: auto;
+    height: 34px;
+    left: 10px;
+    top: 0px;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 34px;
+
+    color: #448899;
+}
+
+.topNavRight {
+    display: flex;
+    justify-content: flex-end;
+    flex: auto;
+    flex-wrap: nowrap;
+
+}
+
+.topItem {
+    flex: none;
+    text-align: center;
+    width: auto;
+    height: 14px;
+    margin-right: 10px;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    color: #666666;
+}
+
+.heroSectionBg {
+    position: relative;
+    top: 54px;
+    width: 100%;
+    height: 320px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin-bottom: 90px;
+}
+
+
+.heroSection {
+    width: 100%;
+    height: 320px;
+    background-image: url("../images/welcomeImage.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1170px auto;
+    margin: auto;
+}
+
+.slogan {
+    grid-column-start: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+
+    position: absolute;
+    top: 85px;
+    width: 1200px;
+    height: 169px;
+}
+
+.sloganText {
+    position: absolute;
+    width: 1180px;
+    height: 78px;
+    left: 0px;
+    top: 0px;
+}
+
+
+.sloganTitle {
+    position: absolute;
+    width: 1180px;
+    height: 41px;
+    left: 0px;
+    top: 10px;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 24px;
+
+    display: flex;
+    align-items: center;
+
+    color: #F8F8F8;
+
+    text-shadow: 0px 0px 30px #AABBCC;
+}
+
+.sloganSubtitle {
+    position: absolute;
+    width: 1180px;
+    height: 22px;
+    left: 0px;
+    top: 56px;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 13px;
+
+    display: flex;
+    align-items: center;
+
+    color: #F8F8F8;
+}
+
+.searchBox {
+    position: absolute;
+    width: 1180px;
+    height: 46px;
+    left: 0px;
+    top: 103px;
+}
+
+.searchArea {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 460px;
+    height: 46px;
+    left: 0px;
+    top: 0px;
+}
+
+.inputArea {
+    justify-content: flex-start;
+    width: 400px;
+    height: 46px;
+    border-color: #FFFFFF;
+    border-radius: 5px 0px 0px 5px;
+    border: none;
+
+
+
+    /* White */
+    background: #FFFFFF;
+}
+
+.searchBtn {
+    justify-content: flex-end;
+    width: 60px;
+    height: 46px;
+    border-color: #448899;
+    background-image: url("../images/icon_search.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30px 30px;
+    background-color: #448899;
+    border-radius: 0px 5px 5px 0px;
+    border: none;
+}
+
+
+.category {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    position: absolute;
+    width: 400px;
+    height: 162px;
+    left: 0px;
+    top: 51px;
+    z-index: 10;
+
+    /* Additional Color/White */
+    background: #FFFFFF;
+
+    /* Box Shadow */
+    box-shadow: 0px 0px 20px #AABBCC;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.categoryItem {
+    width: 90px;
+    height: 20px;
+
+    /* Category List - Med 14(auto) */
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+    justify-content: flex-end;
+
+    color: #000000;
+
+
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.spotPlace {
+    display: flex;
+    justify-content: center;
+}
+
+
+.spotContainer {
+    justify-content: center;
+
+    display: grid;
+
+    width: 1170px;
+    border: #757575 5px;
+    height: max-content;
+
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 30px;
+    row-gap: 30px;
+    grid-auto-flow: row;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    margin: auto;
+
+}
+
+.spotBox {
+    position: relative;
+    width: 270px;
+    height: 242px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #E8E8E8;
+    border-radius: 5px;
+}
+
+.spotImg {
+    width: 100%;
+    height: 197px;
+    max-width: 100%;
+}
+
+.spotOpacity {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    background-color: #000000;
+    opacity: 0.6;
+    top: 157px;
+}
+
+.spotTitle {
+    width: 100%;
+    height: 20px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 13px;
+    top: 176px;
+
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    align-items: center;
+
+    color: #FFFFFF;
+}
+
+
+
+.spotMrtCat {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 45px;
+    top: 197px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.spotMrt {
+    display: flex;
+    width: 125px;
+    height: 25px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    color: #757575;
+    margin-left: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.spotCat {
+    display: flex;
+    width: 125px;
+    height: 25px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    color: #757575;
+    margin-right: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+
+.footer {
+    margin-top: 80px;
+}
+
+
+.footerArea {
+    position: relative;
+    display: flex;
+    left: 0;
+    width: 100%;
+    height: 104px;
+    background-color: #757575;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.footerWord {
+    position: relative;
+    width: auto;
+
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+}
+
+
+@media(max-width:1200px) {
+    .slogan {
+        margin-left: 10px;
+    }
+
+    .spotContainer {
+        width: max-content;
+        height: auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+}
+
+
+@media(max-width:600px) {
+    .searchArea {
+        width: 285px;
+    }
+
+    .inputArea {
+        width: 230px;
+
+    }
+
+    .searchBtn {
+        width: 60px;
+    }
+
+    .category {
+        width: 230px;
+        height: 162px;
+    }
+
+    .categoryItem {
+        width: 60px;
+        height: 20px;
+    }
+
+    .spotContainer {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(12, 1fr);
+    }
+}
