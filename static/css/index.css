@@ -286,6 +286,17 @@ body {
 
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
 .spotBox {
     position: relative;
     width: 270px;

@@ -1,6 +1,6 @@
 let page = 0;
 let keyword = "";
-
+let currentLocation = window.location.origin
 const src_categories = `/api/categories`
 const showCategory = document.querySelector(".inputArea")
 const spotInfo = document.getElementById("spotContainer");
@@ -102,15 +102,20 @@ function displayAttractions(data) {
         spotInfo.textContent = "無資料，請重新查詢"
     } else {
         for (i = 0; i < attractionsData.length; i++) {
+            let id = attractionsData[i]["id"]
             let name = attractionsData[i]["name"]
             let category = attractionsData[i]["category"]
             let mrt = attractionsData[i]["mrt"]
             let images = attractionsData[i]["images"]
+            let href_singleAttraction = `${currentLocation}/attraction/${id}`
 
             // 景點容器
+            let singleAttractionPage = document.createElement("a");
+            singleAttractionPage.setAttribute("href", href_singleAttraction)
             let newSpotBox = document.createElement("div");
             newSpotBox.className = "spotBox";
-            spotInfo.appendChild(newSpotBox);
+            singleAttractionPage.appendChild(newSpotBox)
+            spotInfo.appendChild(singleAttractionPage);
 
             // 圖片
             let newImg = document.querySelector(".spotBox");
