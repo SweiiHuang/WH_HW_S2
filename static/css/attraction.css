@@ -8,10 +8,6 @@
     font-family: 'Noto Sans TC', sans-serif;
 }
 
-body {
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
 
 
 .topBox {
@@ -514,26 +510,60 @@ input[name="pickTime"] {
 
 @media(max-width:600px) {
     .slideshow-container {
-        width: 460px;
+        width: 380px;
     }
 
-
-
-
     .sectionRight {
-        width: 400px;
+        width: 360px;
         justify-content: center;
     }
 
+    .bookTitle {
+        margin-left: 5px;
+    }
+
+    .bookSubTitle {
+        margin-left: 5px;
+        font-size: 15px;
+    }
+
+    .selectDay {
+        margin-left: 5px;
+    }
+
+    .selectDay {
+        margin-left: 5px;
+    }
+
+    .bookBtn {
+        margin-left: 5px;
+    }
+
+    .charge {
+        margin-left: 5px;
+    }
+
+    .selectTime {
+        margin-left: 5px;
+    }
+
     .spotName {
-        width: 400px;
+        width: 360px;
     }
 
     .catMrt {
-        width: 400px;
+        width: 360px;
     }
 
     .bookTourArea {
-        width: 400px;
+        width: 360px;
+    }
+
+    .bookTitle {
+        width: 360px;
+    }
+
+    .bookSubTitle {
+        width: 360px;
     }
 }
