@@ -485,7 +485,7 @@ input[name="pickTime"] {
 }
 
 
-@media(max-width:1170px) {
+@media(max-width:1110px) {
     .section {
         margin-top: 0px;
     }
