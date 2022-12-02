@@ -8,11 +8,6 @@
     font-family: 'Noto Sans TC', sans-serif;
 }
 
-body {
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
 
 
 .topBox {
@@ -286,6 +281,17 @@ body {
 
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
 .spotBox {
     position: relative;
     width: 270px;
@@ -409,6 +415,7 @@ body {
 @media(max-width:1200px) {
     .slogan {
         margin-left: 10px;
+        width: 360px;
     }
 
     .spotContainer {
@@ -418,10 +425,46 @@ body {
         grid-template-rows: repeat(4, 1fr);
     }
 
+
+
+    .sloganText {
+        width: 360px;
+    }
+
+    .sloganTitle {
+        width: 360px;
+    }
+
+    .sloganSubtitle {
+        width: 360px;
+    }
+
+    .searchBox {
+        width: 500px;
+    }
+
+
 }
 
 
 @media(max-width:600px) {
+
+    .slogan {
+        width: 360px;
+    }
+
+    .sloganText {
+        width: 360px;
+    }
+
+    .sloganTitle {
+        width: 360px;
+    }
+
+    .sloganSubtitle {
+        width: 360px;
+    }
+
     .searchArea {
         width: 285px;
     }
@@ -429,6 +472,10 @@ body {
     .inputArea {
         width: 230px;
 
+    }
+
+    .searchBox {
+        width: 360px;
     }
 
     .searchBtn {
@@ -449,4 +496,7 @@ body {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(12, 1fr);
     }
+
+
+
 }

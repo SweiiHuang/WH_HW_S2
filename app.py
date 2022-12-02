@@ -151,7 +151,7 @@ def attractionsId_api(attractionId):
                 "mrt": result[7],
                 "lat": result[8],
                 "lng": result[9],
-                "images": [result[10]]
+                "images": result[10].split(",")
             }
             data = {"data": data_dict}
             return (data), 200
