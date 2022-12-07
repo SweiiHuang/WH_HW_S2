@@ -1,115 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attraction Page</title>
-    <link rel="stylesheet" href="../static/css/attraction.css" />
-</head>
+{% block title %}Attraction Page{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="../static/css/attraction.css" />{% endblock %}
 
-<body>
-    <header class="topBox">
-        <nav class="topNav">
-            <div class="topNavLeft">台北一日遊</div>
-            <div class="topNavRight">
-                <div class="topItem">預定行程</div>
-                <div class="topItem">登入/註冊</div>
+
+
+{% block body %}
+<section class="section">
+    <div class="slideshow-container">
+        <div class="slidePicBox">
+            <!-- <img class="slidePic" src="" alt=""> -->
+        </div>
+
+        <!-- Next and previous buttons -->
+        <div class="nextprev">
+            <div class="next"></div>
+            <div class="prev"></div>
+        </div>
+
+        <!-- The dots/circles -->
+        <div class="dot-container">
+            <!-- <span class="dot"></span> -->
+        </div>
+    </div>
+
+
+
+
+    <div class="sectionRight">
+        <div class="spotName"></div>
+        <div class="catMrt">
+            <div class="spotCat"></div>
+            <div class="spotMrt"></div>
+        </div>
+
+        <div class="bookTourArea">
+            <p class="bookTitle">訂購導覽行程</p>
+            <p class="bookSubTitle">以此景點為中心的一日行程，帶您探索城市角落故事</p>
+
+            <div class="selectDay">選擇日期：
+                <input class="date" type="date">
             </div>
-        </nav>
-    </header>
 
+            <div class="selectTime">選擇時間：
+                <label class="pickOne" for="">
+                    <input id="am" type="radio" name="pickTime" checked>
+                    <p>上半天</p>
+                </label>
 
-    <section class="section">
-        <div class="slideshow-container">
-            <div class="slidePicBox">
-                <!-- <img class="slidePic" src="" alt=""> -->
+                <label class="pickOne" for="">
+                    <input id="pm" type="radio" name="pickTime">
+                    <p>下半天</p>
+                </label>
             </div>
 
-            <!-- Next and previous buttons -->
-            <div class="nextprev">
-                <div class="next"></div>
-                <div class="prev"></div>
+            <div class="charge">導覽費用：
+                <div class="price">新台幣 2000元</div>
             </div>
 
-
-
-            <!-- The dots/circles -->
-            <div class="dot-container">
-                <!-- <span class="dot"></span> -->
-            </div>
-
-
-
+            <button class="bookBtn">開始預約行程</button>
 
         </div>
 
+    </div>
+</section>
 
+<main class="main">
+    <div class="content">
+        <div class="description"></div>
 
-
-        <div class="sectionRight">
-            <div class="spotName"></div>
-            <div class="catMrt">
-                <div class="spotCat"></div>
-                <div class="spotMrt"></div>
-            </div>
-
-            <div class="bookTourArea">
-                <p class="bookTitle">訂購導覽行程</p>
-                <p class="bookSubTitle">以此景點為中心的一日行程，帶您探索城市角落故事</p>
-
-                <div class="selectDay">選擇日期：
-                    <input class="date" type="date">
-                </div>
-
-                <div class="selectTime">選擇時間：
-                    <label class="pickOne" for="">
-                        <input id="am" type="radio" name="pickTime" checked>
-                        <p>上半天</p>
-                    </label>
-
-                    <label class="pickOne" for="">
-                        <input id="pm" type="radio" name="pickTime">
-                        <p>下半天</p>
-                    </label>
-                </div>
-
-                <div class="charge">導覽費用：
-                    <div class="price">新台幣 2000元</div>
-                </div>
-
-                <button class="bookBtn">開始預約行程</button>
-
-            </div>
+        <div class="address">
+            <p class="subtitle">景觀地址：</p>
+            <div class="address-content"></div>
 
         </div>
-    </section>
 
-    <main class="main">
-        <div class="content">
-            <div class="description"></div>
-
-            <div class="address">
-                <p class="subtitle">景觀地址：</p>
-                <div class="address-content"></div>
-
-            </div>
-
-            <div class="transport">
-                <p class="subtitle">交通方式：</p>
-                <div class="transport-content"></div>
-            </div>
-
+        <div class="transport">
+            <p class="subtitle">交通方式：</p>
+            <div class="transport-content"></div>
         </div>
-    </main>
 
-    <footer class="footerWord">
-        COPYRIGHT © 2022 台北一日遊
-    </footer>
+    </div>
+</main>
 
-    <script type="text/javascript" src="../static/js/attraction.js"> </script>
+<footer class="footerWord">
+    COPYRIGHT © 2022 台北一日遊
+</footer>
 
+<script type="text/javascript" src="../static/js/attraction.js"> </script>
+{% endblock %}
 
 </body>
 

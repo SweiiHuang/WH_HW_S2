@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="../static/css/layout.css" />
+    {% block link %}{% endblock %}
+</head>
+
+<body>
+    <header class="topBox">
+        <nav class="topNav">
+            <div class="topNavLeft">台北一日遊</div>
+            <div class="topNavRight">
+                <div class="topItem__book">預定行程</div>
+                <div class="topItem">登入/註冊</div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="popWindow">
+        <!-- 登入 -->
+        <div class="logIn">
+            <div class="logIn__top"></div>
+            <img class="logIn__close" src="../static/images/icon_close.png" alt="">
+            <span class="logIn__title">登入會員帳號</span>
+            <input class="logIn__email" name="email" type="email" placeholder=" 輸入電子信箱">
+            <input class="logIn__password" name="password" type="password" placeholder=" 輸入密碼">
+            <div class="logIn__btn">登入帳戶</div>
+            <span class="logIn__status">{{ message }}</span>
+            <span class="logIn__other">還沒有帳戶？<span class="logIn__click">點此註冊</span></span>
+        </div>
+
+
+        <!-- 註冊 -->
+        <div class="register">
+            <div class="register__top"></div>
+            <img class="register__close" src="../static/images/icon_close.png" alt="">
+            <span class="register__title">註冊會員帳號</span>
+            <input class="register__name" name="name" type="text" placeholder=" 輸入姓名">
+            <input class="register__email" name="email" type="email" placeholder=" 輸入電子郵件">
+            <input class="register__password" name="password" type="password" placeholder=" 輸入密碼">
+            <span class="register__btn">註冊新帳戶</span>
+            <span class="register__status">{{ message }}</span>
+            <span class="register__other">已經有帳戶了？<span class="register__click">點此登入</span></span>
+        </div>
+    </div>
+
+    {% block body %}
+
+
+    {% endblock %}
+    <script type="text/javascript" src="../static/js/layout.js"> </script>
+
+
+</body>
+
+</html>
