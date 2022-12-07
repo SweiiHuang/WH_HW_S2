@@ -8,6 +8,7 @@ fetch(src, {
     let statusCheck = document.querySelector(".topItem")
     if (data.data != null) {
         statusCheck.textContent = "登出系統"
+
         statusCheck.addEventListener('click', () => {
             fetch(`/api/user/auth`, {
                 method: "DELETE"
@@ -16,7 +17,6 @@ fetch(src, {
             }).then(data => {
                 if (data.ok === true) {
                     window.location.reload();
-                    alert("已登出")
                 }
             })
         })
