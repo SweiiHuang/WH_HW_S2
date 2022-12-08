@@ -120,81 +120,71 @@ def register_api():
         connection.close()
 
 
-@app.route("/api/user/auth", methods=["GET"])  # 取得當前登入的會員資訊
-def currentLogIn():
-    try:
-        connection = connection_pool.get_connection()
-        cursor = connection.cursor()
+@app.route("/api/user/auth", methods=["GET", "PUT", "DELETE"])
+def auth_api():
+    if request.method == "GET":
         currentToken = request.cookies.get("JWT_token")
-        token_decode = jwt.decode(currentToken, key, algorithms=["HS256"])
-        if token_decode == None:
-            return make_response(jsonify({
-                "data": None
-            }), 200)
+        if currentToken:
+            try:
+                connection = connection_pool.get_connection()
+                cursor = connection.cursor()
+                token_decode = jwt.decode(
+                    currentToken, key, algorithms=["HS256"])
+                sql = "SELECT * FROM member WHERE id = %s"
+                value = (token_decode["id"],)
+                cursor.execute(sql, value)
+                result = cursor.fetchone()
+                return make_response(jsonify({
+                    "data": {
+                        "id": result[0],
+                        "name": result[1],
+                        "email": result[2]
+                    }
+                }), 200)
+            finally:
+                cursor.close()
+                connection.close()
         else:
-            sql = "SELECT * FROM member WHERE id = %s"
-            value = (token_decode["id"],)
+            resp = make_response(jsonify({"data": None}), 200)
+        return resp
+
+    if request.method == "PUT":
+        member = request.get_json()
+        try:
+            connection = connection_pool.get_connection()
+            cursor = connection.cursor()
+
+            sql = "SELECT * FROM member WHERE email = %s AND password = %s"
+            value = (member["email"], member["password"],)
             cursor.execute(sql, value)
             result = cursor.fetchone()
-            return make_response(jsonify({
-                "data": {
-                    "id": result[0],
-                    "name": result[1],
-                    "email": result[2]
-                }
-            }), 200)
-    except:
-        cursor.close()
-        connection.close()
 
+            if result:
+                token_encode = jwt.encode(
+                    {"id": result[0], }, key, algorithm="HS256")
+                resp = make_response({"ok": True}, 200)
+                resp.set_cookie(key="JWT_token",
+                                value=token_encode, max_age=604800)
+                return resp
+            else:
+                resp = make_response(
+                    {"error": True, "message": "登入失敗，帳號或密碼錯誤"}, 400)
+                return resp
 
-@app.route("/api/user/auth", methods=["PUT"])  # 登入會員帳戶
-def logIn():
-    member = request.get_json()
-    try:
-        connection = connection_pool.get_connection()
-        cursor = connection.cursor()
-
-        sql = "SELECT * FROM member WHERE email = %s AND password = %s"
-        value = (member["email"], member["password"],)
-        cursor.execute(sql, value)
-        result = cursor.fetchone()
-
-        if result:
-            token_encode = jwt.encode({
-                "id": result[0],
-            }, key, algorithm="HS256")
-
-            resp = make_response({"ok": True}, 200)
-            resp.set_cookie(key="JWT_token",
-                            value=token_encode, max_age=604800)
-            resp.headers["Content-Type"] = "application/json"
-            resp.headers["Accept"] = "application/json"
-
+        except:
+            resp = make_response({"error": True, "message": "伺服器內部錯誤"}, 500)
             return resp
-        else:
-            return {
-                "error": True,
-                "message": "登入失敗，帳號或密碼錯誤"
-            }, 400
-    except:
-        return {
-            "error": True,
-            "message": "伺服器內部錯誤"
-        }, 500
 
-    finally:
-        cursor.close()
-        connection.close()
+        finally:
+            cursor.close()
+            connection.close()
 
-
-@app.route("/api/user/auth", methods=["DELETE"])  # 登出會員帳戶
-def logOut():
-    resp = make_response({"ok": True}, 200)
-    resp.set_cookie(key="JWT_token",
-                    value="", max_age=-1)
-
+    if request.method == "DELETE":
+        resp = make_response({"ok": True}, 200)
+        resp.set_cookie(key="JWT_token", value="", max_age=-1)
     return resp
+
+
 # ----------------------------------------------
 # 旅遊景點API
 
@@ -318,4 +308,4 @@ def categories_api():
         connection.close()
 
 
-app.run(host='0.0.0.0', port=3000, debug=True)
+app.run(host='0.0.0.0', port=3000, debug=False)

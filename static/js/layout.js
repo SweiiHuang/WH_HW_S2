@@ -1,3 +1,9 @@
+
+//返回首頁
+let backHomepage = document.querySelector(".topNavLeft__link")
+backHomepage.setAttribute("href", currentLocation)
+
+
 // 登入狀態
 let src = `/api/user/auth`
 fetch(src, {
@@ -10,6 +16,9 @@ fetch(src, {
         statusCheck.textContent = "登出系統"
 
         statusCheck.addEventListener('click', () => {
+            let popLogIn = document.querySelector(".logIn")
+            popLogIn.style.display = "none"
+
             fetch(`/api/user/auth`, {
                 method: "DELETE"
             }).then((response) => {
@@ -128,4 +137,5 @@ registerBtn.addEventListener('click', () => {
         }
     })
 })
+
 

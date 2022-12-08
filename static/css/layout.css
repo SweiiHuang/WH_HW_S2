@@ -50,6 +50,11 @@
     color: #448899;
 }
 
+.topNavLeft__link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 
 .topNavRight {
     display: flex;

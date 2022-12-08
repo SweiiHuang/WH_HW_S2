@@ -168,6 +168,10 @@
     cursor: pointer;
 }
 
+.categoryItem:hover {
+    color: #448899;
+}
+
 .categoryItem {
     width: 90px;
     height: 20px;
