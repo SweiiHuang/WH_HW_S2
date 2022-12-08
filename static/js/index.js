@@ -16,7 +16,6 @@ const observer = new IntersectionObserver((entries) => {
 observer.observe(document.querySelector("footer"));
 
 
-
 //取得景點分類
 function showCAT() {
     fetch(src_categories).then(function (response) {

@@ -1,50 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layout.html" %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taipei Day Trip</title>
-    <link rel="stylesheet" href="../static/css/index.css" />
-</head>
+{% block title %}Taipei Day Trip{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="../static/css/index.css" />{% endblock %}
 
-<body>
-    <header class="topBox">
-        <nav class="topNav">
-            <div class="topNavLeft">台北一日遊</div>
-            <div class="topNavRight">
-                <div class="topItem">預定行程</div>
-                <div class="topItem">登入/註冊</div>
+
+{% block body %}
+
+<section class="heroSectionBg ">
+
+    <div class="heroSection">
+        <div class="slogan">
+            <div class="sloganText">
+                <div class="sloganTitle">輕鬆享受台北一日悠閒</div>
+                <div class="sloganSubtitle">探索每個角落，體驗城市的深度旅遊行程</div>
             </div>
-        </nav>
-    </header>
-
-    <section class="heroSectionBg ">
-        <div class="heroSection">
-            <div class="slogan">
-                <div class="sloganText">
-                    <div class="sloganTitle">輕鬆享受台北一日悠閒</div>
-                    <div class="sloganSubtitle">探索每個角落，體驗城市的深度旅遊行程</div>
-                </div>
-                <div class="searchBox">
-                    <div class="searchArea">
-                        <input class=" inputArea" type="text" placeholder=" 輸入景點名稱查詢 " />
-                        <button class="searchBtn"></button>
-                        <div class="category">
-                        </div>
+            <div class="searchBox">
+                <div class="searchArea">
+                    <input class=" inputArea" type="text" placeholder=" 輸入景點名稱查詢 " />
+                    <button class="searchBtn"></button>
+                    <div class="category">
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 
 
-    <main class="spotContainer" id="spotContainer">
-        <!-- 主頁容器 -->
-        <!-- 定位用 -->
-        <!-- <a href="">
+<main class="spotContainer" id="spotContainer">
+    <!-- 主頁容器 -->
+    <!-- 定位用 -->
+    <!-- <a href="">
             <div class="spotBox">
                 <img src="../static/Picture.png" alt="" class="spotImg">
                 <div class="spotOpacity">
@@ -57,14 +45,19 @@
             </div>
         </a> -->
 
-    </main>
+</main>
 
 
 
-    <footer class="footerArea">
-        <div class="footerWord">COPYRIGHT © 2022 台北一日遊</div>
-    </footer>
-    <script type="text/javascript" src="../static/js/index.js"> </script>
+<footer class="footerArea">
+    <div class="footerWord">COPYRIGHT © 2022 台北一日遊</div>
+</footer>
+<script type="text/javascript" src="../static/js/index.js"> </script>
+{% endblock %}
+
+
+
+
 </body>
 
 </html>
