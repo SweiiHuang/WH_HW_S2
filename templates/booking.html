@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}Booking Page{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="../static/css/booking.css" />{% endblock %}
+
+
+{% block body %}
+<div class="greetingBox">
+    <p class="greeting">您好，待預定的行程如下: <br>目前沒有任何待預訂的行程 </p>
+</div>
+<main class="mainContent">
+    <section class="schedule">
+        <div class="schedule__info">
+            <div class="schedule_pic"></div>
+            <div class="schedule__position">
+                <div class="schedule__detail">
+                    <p class="schedule__detail--title"></p>
+                    <p class="schedule__detail--date"></p>
+                    <p class="schedule__detail--time"></p>
+                    <p class="schedule__detail--price"></p>
+                    <p class="schedule__detail--place"></p>
+                </div>
+                <span class="schedule__detail--delete"></span>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contactInfo">
+        <span class="contactInfo__title">您的聯絡資訊</span>
+        <div class="contactInfo__name">聯絡姓名：<input type="text" required></div>
+        <div class="contactInfo__email">連絡信箱：<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                required></div>
+        <div class="contactInfo__phone">手機號碼：<input type="text" pattern="09\d{2}\-?\d{3}\-?\d{3}" required></div>
+        <span class="contactInfo__reminder">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</span>
+    </section>
+
+    <section class="payment">
+        <span class="payment__title">信用卡付款資訊</span>
+        <div class="payment__cardNumber">卡片號碼：<input type="text" placeholder="**** **** **** ****"
+                pattern="[0-9]{13,16}"></div>
+        <div class="payment__expiredDate">過期時間：<input type="text" placeholder="MM/YY"></div>
+        <div class="payment__cvv">驗證密碼：<input type="text" placeholder="CVV"></div>
+    </section>
+    <div class="payment__check">
+        <span class="payment__check--price"></span>
+        <span class="payment__check--btn">確認訂購並付款</span>
+    </div>
+</main>
+
+<footer class="footerWord">
+    COPYRIGHT © 2022 台北一日遊
+</footer>
+
+
+
+<script type="text/javascript" src="../static/js/booking.js"> </script>
+{% endblock %}
+
+</body>
+
+</html>

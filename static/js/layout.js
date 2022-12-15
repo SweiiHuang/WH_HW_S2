@@ -1,5 +1,6 @@
 
 //返回首頁
+let currentLocation = window.location.origin
 let backHomepage = document.querySelector(".topNavLeft__link")
 backHomepage.setAttribute("href", currentLocation)
 
@@ -12,13 +13,14 @@ fetch(src, {
     return response.json();
 }).then(data => {
     let statusCheck = document.querySelector(".topItem")
+    let bookingCheck = document.querySelector(".topItem__book")
+    let startBooking = document.querySelector(".bookBtn")
+    let href_booking = `${currentLocation}/booking`
     if (data.data != null) {
         statusCheck.textContent = "登出系統"
-
         statusCheck.addEventListener('click', () => {
             let popLogIn = document.querySelector(".logIn")
             popLogIn.style.display = "none"
-
             fetch(`/api/user/auth`, {
                 method: "DELETE"
             }).then((response) => {
@@ -29,8 +31,24 @@ fetch(src, {
                 }
             })
         })
+        bookingCheck.addEventListener('click', () => {
+            let bookLink = document.querySelector(".topItem__book--link")
+            bookLink.setAttribute("href", href_booking)
+        })
+
+
+
+
+
+
+
     } if (data.data == null) {
-        statusCheck.textContent = "登入/註冊"
+        statusCheck.textContent = "登入/註冊";
+
+        bookingCheck.addEventListener('click', () => {
+            let popLogIn = document.querySelector(".logIn")
+            popLogIn.style.display = "flex"
+        })
     };
 });
 
