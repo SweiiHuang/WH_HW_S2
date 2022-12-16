@@ -128,7 +128,7 @@
     display: flex;
     width: 30px;
     height: 30px;
-    margin-left: 50px;
+    margin-left: 100px;
     background-image: url(../images/icon_delete.png);
     cursor: pointer;
 
@@ -303,6 +303,12 @@ body {
 
     .schedule__position {
         width: 300px;
+        flex-direction: column;
+    }
+
+    .schedule__detail--delete {
+        margin-left: 250px;
+        margin-bottom: 5px;
     }
 
 

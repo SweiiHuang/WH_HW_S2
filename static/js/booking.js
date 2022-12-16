@@ -19,13 +19,16 @@ function bookingData() {
         let time = data.data.time;
         let price = data.data.price;
         let memberName = data.data.memberName;
+        let memberEmail = data.data.memberEmail
+        console.log(memberEmail)
 
         let greeting = document.querySelector(".greeting")
         greeting.textContent = "您好， " + memberName + " 待預定的行程如下:"
 
 
         if (data.data === null) {
-            window.location.reload();
+            let mainContent = document.querySelector(".mainContent")
+            mainContent.style.display = "none"
         }
         else {
 
@@ -51,9 +54,9 @@ function bookingData() {
 
             let detailTime = document.querySelector(".schedule__detail--time")
             if (time === "morning") {
-                detailTime.textContent = "時間：早上9點到下午4點"
+                detailTime.textContent = "時間：早上9點到下午2點"
             } else {
-                detailTime.textContent = "時間：下午1點到晚上8點"
+                detailTime.textContent = "時間：下午1點到晚上6點"
             }
 
             let detailPrice = document.querySelector(".schedule__detail--price")
@@ -64,6 +67,12 @@ function bookingData() {
             let detailAddress = document.querySelector(".schedule__detail--place")
             let bookingAddress = "地點：" + address
             detailAddress.textContent = bookingAddress
+
+            let bookingName = document.querySelector("#bookingName")
+            bookingName.value = memberName
+
+            let bookingEmail = document.querySelector("#bookingEmail")
+            bookingEmail.value = memberEmail
 
         }
     })

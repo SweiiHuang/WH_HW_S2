@@ -108,6 +108,7 @@ def booking_api():
                 taipei_attractions.address,
                 taipei_attractions.images,
                 member.name,
+                member.email,
                 booking.memberId,
                 booking.bookingDate,
                 booking.bookingTime,
@@ -133,10 +134,11 @@ def booking_api():
 
                     data_dict = {
                         "attraction": attraction_dict,
-                        "date": result[6],
-                        "time": result[7],
-                        "price": result[8],
+                        "date": result[7],
+                        "time": result[8],
+                        "price": result[9],
                         "memberName": result[4],
+                        "memberEmail": result[5]
                     }
                     return {
                         "data": data_dict

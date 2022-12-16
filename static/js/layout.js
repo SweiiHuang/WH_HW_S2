@@ -37,11 +37,6 @@ fetch(src, {
         })
 
 
-
-
-
-
-
     } if (data.data == null) {
         statusCheck.textContent = "登入/註冊";
 

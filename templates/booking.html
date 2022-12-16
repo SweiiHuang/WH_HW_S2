@@ -29,11 +29,18 @@
 
     <section class="contactInfo">
         <span class="contactInfo__title">您的聯絡資訊</span>
-        <div class="contactInfo__name">聯絡姓名：<input type="text" required></div>
-        <div class="contactInfo__email">連絡信箱：<input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                required></div>
-        <div class="contactInfo__phone">手機號碼：<input type="text" pattern="09\d{2}\-?\d{3}\-?\d{3}" required></div>
-        <span class="contactInfo__reminder">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</span>
+        <div class="contactInfo__name">聯絡姓名：
+            <input id="bookingName" type="text" value="" placeholder="">
+        </div>
+        <div class="contactInfo__email">連絡信箱：
+            <input id="bookingEmail" type="email" value="" placeholder="">
+        </div>
+        <div class="contactInfo__phone">手機號碼：
+            <input type="text" pattern="09\d{2}\-?\d{3}\-?\d{3}" placeholder="">
+        </div>
+        <span class="contactInfo__reminder">
+            請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
+        </span>
     </section>
 
     <section class="payment">
