@@ -1,5 +1,5 @@
 // 取得網址路徑景點編號
-let currentLocation = window.location.origin
+currentLocation = window.location.origin
 let currentPathname = window.location.pathname
 let src_singleAttractionData = `${currentLocation}/api${currentPathname}`
 
@@ -12,16 +12,16 @@ function fetchSingleData() {
         return response.json();
     }).then(function (data) {
         //console.log(data)
-        let singleSpotData = data["data"];
+        let singleSpotData = data.data;
 
         // 分類資料
-        let name = singleSpotData["name"];
-        let category = singleSpotData["category"];
-        let mrt = singleSpotData["mrt"];
-        let description = singleSpotData["description"];
-        let address = singleSpotData["address"];
-        let transport = singleSpotData["transport"];
-        let images = singleSpotData["images"];
+        let name = singleSpotData.name;
+        let category = singleSpotData.category;
+        let mrt = singleSpotData.mrt;
+        let description = singleSpotData.description;
+        let address = singleSpotData.address;
+        let transport = singleSpotData.transport;
+        let images = singleSpotData.images;
 
         //文字資料填入頁面
         let spotName = document.querySelector(".spotName");
@@ -111,16 +111,65 @@ function fetchSingleData() {
     let am = document.querySelector("#am")
     am.addEventListener('click', function () {
         let amFee = document.querySelector(".price")
-        amFee.textContent = "新台幣 2000元"
+        amFee.textContent = "新台幣2000元"
     })
 
     let pm = document.querySelector("#pm")
     pm.addEventListener('click', function () {
         let pmFee = document.querySelector(".price")
-        pmFee.textContent = "新台幣 2500元"
+        pmFee.textContent = "新台幣2500元"
     })
 
 };
 fetchSingleData()
 
 
+//預定行程
+let startBooking = document.querySelector(".bookBtn")
+if (document.cookie) {
+    startBooking.addEventListener('click', () => {
+
+        let attractionId = location.pathname.slice(12,);
+        let date = document.querySelector(".date").value;
+        let time = document.querySelector("input[name='pickTime']:checked").value;
+        let price = document.querySelector(".price").textContent.slice(3, 7);
+        let booking_src = `/api/booking`
+        let bookingBody = {
+            "attractionId": attractionId,
+            "date": date,
+            "time": time,
+            "price": price,
+        }
+
+        if (attractionId && date && time && price) {
+            fetch(booking_src, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(bookingBody),
+            }).then((response) => {
+                return response.json();
+            }).then(data => {
+                if (data.ok == true) {
+                    window.location.replace("/booking")
+                }
+                if (data.error == true) {
+                    window.alert("建立失敗，輸入不正確或其他原因")
+                }
+            })
+
+        }
+        else {
+            window.alert("請確認欄位皆已填寫!")
+        }
+    }
+    )
+}
+if (!document.cookie) {
+    startBooking.addEventListener('click', () => {
+        let popLogIn = document.querySelector(".logIn")
+        popLogIn.style.display = "flex"
+    })
+}

@@ -1,6 +1,6 @@
 let page = 0;
 let keyword = "";
-let currentLocation = window.location.origin
+// let currentLocation = window.location.origin
 const src_categories = `/api/categories`
 const showCategory = document.querySelector(".inputArea")
 const spotInfo = document.getElementById("spotContainer");

@@ -1,0 +1,334 @@
+.greetingBox {
+    background: #FFFFFF;
+
+}
+
+.greeting {
+    display: flex;
+
+    max-width: 1200px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 40px;
+    color: #666666;
+
+    padding-top: 37px;
+    padding-bottom: 20px;
+    padding-left: 100px;
+    margin-top: 46px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background: #FFFFFF;
+}
+
+.mainContent {
+    display: none;
+    justify-content: center;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 16px;
+    color: #666666;
+
+
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background: #FFFFFF;
+}
+
+
+.schedule {
+    display: flex;
+    max-width: 1200px;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+    padding-left: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 37px;
+
+}
+
+
+
+.schedule__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 10px;
+    gap: 25px;
+
+}
+
+.schedule__pic {
+    width: 266px;
+    height: 200px;
+}
+
+.schedule_pic--img {
+    width: 266px;
+    height: 200px;
+
+}
+
+
+.schedule__position {
+    display: flex;
+    max-width: auto;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.schedule__detail {
+    display: flex;
+    max-width: auto;
+
+    flex-direction: column;
+}
+
+.schedule__detail--title {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 13px;
+    color: #448899;
+
+    margin-bottom: 30px;
+}
+
+.schedule__detail--date,
+.schedule__detail--time,
+.schedule__detail--price,
+.schedule__detail--place {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 15px;
+    color: #666666;
+
+    margin-bottom: 20px;
+}
+
+.schedule__detail--delete {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    margin-left: 100px;
+    background-image: url(../images/icon_delete.png);
+    cursor: pointer;
+
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    height: 300px;
+
+    padding-left: 100px;
+    padding-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-top: 1px solid #E8E8E8;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.payment {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    height: 260px;
+
+    padding-left: 100px;
+    padding-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.contactInfo__title,
+.payment__title {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 16px;
+
+    color: #666666;
+
+    padding-bottom: 30px;
+}
+
+.contactInfo__name,
+.contactInfo__email,
+.contactInfo__phone,
+.payment__cardNumber,
+.payment__expiredDate,
+.payment__cvv {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 13px;
+
+    color: #666666;
+
+    padding-bottom: 20px;
+}
+
+
+
+input {
+    width: 200px;
+    height: 30px;
+}
+
+.contactInfo__reminder {
+    display: flex;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 13px;
+    width: fit-content;
+
+    word-break: break-all;
+    color: #666666;
+}
+
+.payment__check {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    max-width: 100%;
+    width: 1000px;
+    height: 150px;
+
+    padding-top: 25px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.payment__check--price {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 13px;
+
+    color: #666666;
+}
+
+.payment__check--btn {
+    width: 173px;
+    height: 36px;
+    background: #448899;
+    border-radius: 5px;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 16px;
+    color: #FFFFFF;
+    padding-left: 20px;
+    padding-top: 10px;
+
+    margin-top: 25px;
+
+    cursor: pointer;
+}
+
+
+.footerWord {
+    position: relative;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 13px;
+
+    color: #FFFFFF;
+
+    max-width: 100%;
+    height: 104px;
+    background: #757575;
+}
+
+body {
+    background-color: #757575;
+    ;
+}
+
+
+@media(max-width:650px) {
+    .greeting {
+        padding-left: 30px;
+
+    }
+
+    .schedule {
+        padding-left: 30px;
+        justify-content: center;
+        margin-bottom: 0px;
+    }
+
+    .schedule__info {
+        flex-direction: column;
+        margin-left: 0px;
+    }
+
+
+    .schedule__position {
+        width: 300px;
+        flex-direction: column;
+    }
+
+    .schedule__detail--delete {
+        margin-left: 250px;
+        margin-bottom: 5px;
+    }
+
+
+    .contactInfo {
+        width: auto;
+        padding-left: 30px;
+    }
+
+    .contactInfo__reminder {
+        width: 300px;
+        font-family: 'Noto Sans TC';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 23px;
+        word-break: break-all
+    }
+
+    .payment {
+        padding-left: 30px;
+    }
+
+}
