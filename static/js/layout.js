@@ -36,6 +36,11 @@ fetch(src, {
             bookLink.setAttribute("href", href_booking)
         })
 
+        // let greeting = document.querySelector(".greeting")
+        // greeting.textContent = "您好， " + data.data.name + " 待預定的行程如下:\n目前沒有任何待預訂的行程"
+
+
+
 
     } if (data.data == null) {
         statusCheck.textContent = "登入/註冊";

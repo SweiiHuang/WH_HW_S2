@@ -36,7 +36,7 @@
             <input id="bookingEmail" type="email" value="" placeholder="">
         </div>
         <div class="contactInfo__phone">手機號碼：
-            <input type="text" pattern="09\d{2}\-?\d{3}\-?\d{3}" placeholder="">
+            <input id="bookingPhone" type="text" placeholder="">
         </div>
         <span class="contactInfo__reminder">
             請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。
@@ -45,10 +45,15 @@
 
     <section class="payment">
         <span class="payment__title">信用卡付款資訊</span>
-        <div class="payment__cardNumber">卡片號碼：<input type="text" placeholder="**** **** **** ****"
-                pattern="[0-9]{13,16}"></div>
-        <div class="payment__expiredDate">過期時間：<input type="text" placeholder="MM/YY"></div>
-        <div class="payment__cvv">驗證密碼：<input type="text" placeholder="CVV"></div>
+        <div class="payment__cardNumber">卡片號碼：
+            <div class="tpfield" id="card-number"></div>
+        </div>
+        <div class="payment__expiredDate">過期時間：
+            <div class="tpfield" id="card-expiration-date"></div>
+        </div>
+        <div class="payment__cvv">驗證密碼：
+            <div class="tpfield" id="card-ccv"></div>
+        </div>
     </section>
     <div class="payment__check">
         <span class="payment__check--price"></span>
@@ -61,7 +66,7 @@
 </footer>
 
 
-
+<script src="https://js.tappaysdk.com/sdk/tpdirect/v5.14.0"></script>
 <script type="text/javascript" src="../static/js/booking.js"> </script>
 {% endblock %}
 
