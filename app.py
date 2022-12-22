@@ -1,4 +1,5 @@
 from flask import *
+import requests
 import json
 import os
 import re
@@ -10,6 +11,13 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from flask import jsonify
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+load_dotenv()
+
+dbPASSWORD = os.getenv("DB_PASSWORD")
+partnerKEY = os.getenv("PARTNER_KEY")
+merchantID = os.getenv("MERCHANT_ID")
+key = os.getenv("JWT_KEY")
 
 # Original-------------------
 app = Flask(__name__)
@@ -21,15 +29,12 @@ app.config["JSON_SORT_KEYS"] = False
 CORS(app)
 bcrypt = Bcrypt(app)
 
-key = "thisissecret"
-
-
 # MySQL configurations
 dbconfig = {
     "host": "localhost",
     "database": "attractions_db",
     "user": "root",
-    "password": "root20137aws",
+    "password": dbPASSWORD,
 }
 # create connection pool
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(
@@ -81,7 +86,136 @@ def booking():
 def thankyou():
     return render_template("thankyou.html")
 # Pages End-----------------------------------
-# 預定行程API-----------------------------------
+# 訂單付款API----------------------------------
+
+
+@app.route("/api/orders", methods=["POST"])
+def order_api():
+    currentToken = request.cookies.get("JWT_token")
+    if currentToken == None:
+        return {
+            "error": True,
+            "message": "未登入系統，拒絕存取"}, 403
+    else:
+        order = request.get_json()
+        prime = order["prime"]
+        price = order["order"]["price"]
+        tripId = order["order"]["trip"]["attraction"]["id"]
+        date = order["order"]["trip"]["date"]
+        time = order["order"]["trip"]["time"]
+        name = order["order"]["contact"]["name"]
+        email = order["order"]["contact"]["email"]
+        phone = order["order"]["contact"]["phone"]
+
+        if name == None or email == None or phone == None:
+            return {
+                "error": True,
+                "message": "請填入完整訂購資訊"}, 400
+        else:
+            try:
+                token_decode = jwt.decode(
+                    currentToken, key, algorithms=["HS256"])
+
+                memberId = token_decode["id"]
+                order_number = datetime.now().strftime("%Y%m%d%H%M%S")
+                status = "未付款"
+
+                connection = connection_pool.get_connection()
+                cursor = connection.cursor()
+
+                sql_update = '''
+                INSERT INTO order_list(
+                    orderId,
+                    orderNumber,
+                    paymentStatus,
+                    orderMemberId,
+                    orderMemberName,
+                    orderMemberEmail,
+                    orderMemberPhone,
+                    orderAttractionId,
+                    orderDate,
+                    orderTime,
+                    orderPrice,
+                    createTime)
+                VALUE
+                (NULL,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,CURRENT_TIMESTAMP)
+                '''
+                order_update = (order_number, status,
+                                memberId, name, email, phone, tripId, date, time, price)
+                cursor.execute(sql_update, order_update)
+
+                sql_delete = '''DELETE FROM booking WHERE memberId=%s'''
+                booking_delete = (memberId,)
+                cursor.execute(sql_delete, booking_delete)
+
+                connection.commit()
+                cursor.close()
+                connection.close()
+
+                headers = {"Content-Type": "application/json",
+                           "x-api-key": partnerKEY}
+
+                order_data = {
+                    "prime": prime,
+                    "partner_key": partnerKEY,
+                    "merchant_id": merchantID,
+                    "order_number": order_number,
+                    "details": name+"的訂單",
+                    "amount": price,
+                    "cardholder": {
+                        "phone_number": phone,
+                        "name": name,
+                        "email": email,
+                    },
+                }
+
+                # Pay by Prime (Server to TapPayServer)
+                response = requests.post("https://sandbox.tappaysdk.com/tpc/payment/pay-by-prime", headers=headers,
+                                         json=order_data).json()
+                status_code = response["status"]
+
+                if status_code == 0:
+                    status = "已付款"
+                    connection = connection_pool.get_connection()
+                    cursor = connection.cursor()
+                    sql_update = '''
+                    UPDATE order_list
+                    SET paymentStatus=%s
+                    WHERE orderNumber=%s'''
+
+                    order_update = (status, order_number)
+                    cursor.execute(sql_update, order_update)
+                    connection.commit()
+
+                    cursor.close()
+                    connection.close()
+
+                    return {
+
+                        "data": {
+                            "number": order_number,
+                            "payment": {
+                                "status": status_code,
+                                "message": "付款成功"
+                            }
+                        }}, 200
+                else:
+                    return {
+                        "data": {
+                            "number": order_number,
+                            "payment": {
+                                "status": status_code,
+                                "message": "付款失敗"
+                            }
+                        }}, 200
+
+            except:
+                return {
+                    "error": True,
+                    "message": "伺服器內部錯誤"
+                }, 500
+
+# 預定行程API----------------------------------
 
 
 @app.route("/api/booking", methods=["GET", "POST", "DELETE"])
@@ -345,8 +479,7 @@ def auth_api():
     return resp
 
 
-# ----------------------------------------------
-# 旅遊景點API
+# 旅遊景點API----------------------------------
 
 
 @app.route("/api/attractions", methods=["GET"])

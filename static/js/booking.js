@@ -9,8 +9,6 @@ function bookingData() {
     fetch(`/api/booking`).then((response) => {
         return response.json();
     }).then(data => {
-        console.log(data)
-
         let id = data.data.attraction.id;
         let title = data.data.attraction.name;
         let address = data.data.attraction.address;
@@ -20,7 +18,6 @@ function bookingData() {
         let price = data.data.price;
         let memberName = data.data.memberName;
         let memberEmail = data.data.memberEmail
-        console.log(memberEmail)
 
         let greeting = document.querySelector(".greeting")
         greeting.textContent = "您好， " + memberName + " 待預定的行程如下:"
@@ -75,10 +72,78 @@ function bookingData() {
             bookingEmail.value = memberEmail
 
         }
+
+        // 讓 button click 之後觸發 getPrime 方法
+        let bookingOrder = document.querySelector(".payment__check--btn")
+        bookingOrder.addEventListener('click', () => {
+            const orderName = document.querySelector("#bookingName").value
+            const orderEmail = document.querySelector("#bookingEmail").value
+            const orderPhone = document.querySelector("#bookingPhone").value
+
+            // Get prime
+            TPDirect.card.getPrime((result) => {
+                if (result.status !== 0) {
+                    // alert('get prime error ' + result.msg)
+                    return
+                }
+
+                let orderPrime = result.card.prime
+                // alert('get prime 成功，prime: ' + orderPrime)
+
+
+                orderData = {
+                    "prime": orderPrime,
+                    "order": {
+                        "price": price,
+                        "trip": {
+                            "attraction": {
+                                "id": id,
+                                "name": title,
+                                "address": address,
+                                "image": image = image
+                            },
+                            "date": date,
+                            "time": time,
+                        },
+                        "contact": {
+                            "name": orderName,
+                            "email": orderEmail,
+                            "phone": orderPhone,
+                        }
+                    }
+                }
+                console.log(orderData)
+
+                // send prime to your server, to pay with Pay by Prime API .
+                async function order() {
+                    const response = await fetch(`/api/orders`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(orderData),
+                    });
+                    const confirmOrder = await response.json();
+                    if (confirmOrder.data) {
+                        let orderNumber = confirmOrder.data.number;
+                        window.location.replace(`/thankyou?number=${orderNumber}`)
+                    }
+                    else if (res.error) {
+                        window.location.reload();
+                    }
+
+                } order();
+
+            })
+
+        })
     })
 } bookingData()
 
 
+
+
+// 刪除待預定行程
 const deleteSchedule = document.querySelector(".schedule__detail--delete")
 deleteSchedule.addEventListener('click', () => {
     fetch(`/api/booking`, {
@@ -90,6 +155,73 @@ deleteSchedule.addEventListener('click', () => {
             window.location.reload();
         }
     })
+})
+
+// 串接金流預定行程初始化金鑰
+TPDirect.setupSDK(126877, 'app_6PZ8vzKLkBi2tWb1cf5ofZAXiP8gwmnwWBxHxzPLR6AG4MAlewxDBn923QDt', 'sandbox');
+
+let fields = {
+    number: {
+        // css selector
+        element: '#card-number',
+        placeholder: '**** **** **** ****'
+    },
+    expirationDate: {
+        // DOM object
+        element: document.getElementById('card-expiration-date'),
+        placeholder: 'MM / YY'
+    },
+    ccv: {
+        element: '#card-ccv',
+        placeholder: 'ccv'
+    }
+};
+// 植入輸入卡號表單
+TPDirect.card.setup({
+    fields: fields,
+    styles: {
+        // Style all elements
+        'input': {
+            'color': 'gray'
+        },
+        // Styling ccv field
+        'input.ccv': {
+            // 'font-size': '16px'
+        },
+        // Styling expiration-date field
+        'input.expiration-date': {
+            // 'font-size': '16px'
+        },
+        // Styling card-number field
+        'input.card-number': {
+            // 'font-size': '16px'
+        },
+        // style focus state
+        ':focus': {
+            // 'color': 'black'
+        },
+        // style valid state
+        '.valid': {
+            'color': 'green'
+        },
+        // style invalid state
+        '.invalid': {
+            'color': 'red'
+        },
+        // Media queries
+        // Note that these apply to the iframe, not the root window.
+        '@media screen and (max-width: 400px)': {
+            'input': {
+                'color': 'orange'
+            }
+        }
+    },
+    // 此設定會顯示卡號輸入正確後，會顯示前六後四碼信用卡卡號
+    isMaskCreditCardNumber: true,
+    maskCreditCardNumberRange: {
+        beginIndex: 6,
+        endIndex: 11
+    }
 })
 
 
