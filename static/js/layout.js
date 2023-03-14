@@ -12,11 +12,20 @@ fetch(src, {
 }).then((response) => {
     return response.json();
 }).then(data => {
+
     let statusCheck = document.querySelector(".topItem")
     let bookingCheck = document.querySelector(".topItem__book")
     let startBooking = document.querySelector(".bookBtn")
     let href_booking = `${currentLocation}/booking`
     if (data.data != null) {
+        let topNavRight = document.querySelector(".topNavRight")
+        let memberCenter = document.createElement("a")
+        memberCenter.textContent = "歷史訂單"
+        memberCenter.className = "topItem__member"
+        memberCenter.setAttribute("href", `${currentLocation}/member`)
+        topNavRight.appendChild(memberCenter)
+
+
         statusCheck.textContent = "登出系統"
         statusCheck.addEventListener('click', () => {
             let popLogIn = document.querySelector(".logIn")
@@ -36,8 +45,6 @@ fetch(src, {
             bookLink.setAttribute("href", href_booking)
         })
 
-        // let greeting = document.querySelector(".greeting")
-        // greeting.textContent = "您好， " + data.data.name + " 待預定的行程如下:\n目前沒有任何待預訂的行程"
 
 
 

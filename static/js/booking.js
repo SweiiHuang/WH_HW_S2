@@ -75,10 +75,35 @@ function bookingData() {
 
         // 讓 button click 之後觸發 getPrime 方法
         let bookingOrder = document.querySelector(".payment__check--btn")
+
+        bookingOrder.addEventListener('click', () => {
+            document.querySelector(".loader").style.display = "block";
+        })
+
         bookingOrder.addEventListener('click', () => {
             const orderName = document.querySelector("#bookingName").value
             const orderEmail = document.querySelector("#bookingEmail").value
             const orderPhone = document.querySelector("#bookingPhone").value
+
+            const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (emailPattern.test(orderEmail)) {
+                // Email is valid
+            } else {
+                window.alert("無效的電子信箱，請重新填寫！");
+                window.location.reload();
+            }
+
+            const phoneNumberRegex = /^09\d{8}$/;
+            if (phoneNumberRegex.test(orderPhone)) {
+                // The phone number is in the correct format
+                console.log("Valid phone number");
+            } else {
+                // The phone number is not in the correct format
+                window.alert("無效的手機號碼，請重新填寫！");
+                window.location.reload();
+            }
+
 
             // Get prime
             TPDirect.card.getPrime((result) => {
@@ -112,7 +137,6 @@ function bookingData() {
                         }
                     }
                 }
-                console.log(orderData)
 
                 // send prime to your server, to pay with Pay by Prime API .
                 async function order() {
