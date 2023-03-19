@@ -40,6 +40,8 @@ Test payment information:
     - MySQL
     - Use a connection pool to manage connections between the application and the database server.
     - Database Schema
+      <img width="718" alt="Screen Shot 2023-03-19 at 9 37 44 PM" src="https://user-images.githubusercontent.com/102010184/226178825-f2c0ba14-40b6-4192-9b0b-c0e2388e4527.png">
+
 
 
  - Cloud Services
