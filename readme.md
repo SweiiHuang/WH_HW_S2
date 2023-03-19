@@ -48,8 +48,9 @@ Test payment information:
     - Git / GitHub
  - Architecture
     - Server Architecture
-    
-<img width="751" alt="Screen Shot 2023-03-19 at 9 19 40 PM" src="https://user-images.githubusercontent.com/102010184/226177779-821c7274-bd75-4d8f-a207-8d3f09d4f1f6.png">
+    <img width="737" alt="Screen Shot 2023-03-19 at 9 29 23 PM" src="https://user-images.githubusercontent.com/102010184/226178340-687f5f8a-9ed7-4409-8d47-57df8cdf0d31.png">
+
+
 
  ### Third-party 
   - TapPay
