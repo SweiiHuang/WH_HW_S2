@@ -8,7 +8,7 @@
 Website :
 
 Test account:
-|  **Account** | **test@test.com** |
+|  **Account** | **testuser@testuser.com** |
 |:------------:|:-----------------:|
 | **Password** |    **test123**    |
 
