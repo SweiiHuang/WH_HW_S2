@@ -5,7 +5,7 @@
 
 
 ## Demo
-Website :
+Website : http://18.176.255.95:3000/
 
 Test account:
 |  **Account** | **testuser@testuser.com** |
