@@ -1942,3 +1942,10 @@ body {
         width: 100%;
     }
 }
+
+@media(max-width:370px) {
+    .footerWord {
+        position: relative;
+        margin-top: 30px;
+    }
+}

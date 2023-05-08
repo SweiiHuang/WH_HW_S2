@@ -126,6 +126,10 @@ fetchSingleData()
 
 //預定行程
 let startBooking = document.querySelector(".bookBtn")
+//限定只能選擇今日(含)之後的日期
+let currentDate = new Date().toISOString().split("T")[0];
+document.getElementById("input-date").min = currentDate;
+
 if (document.cookie) {
     startBooking.addEventListener('click', () => {
 

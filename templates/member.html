@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block title %}Member Center{% endblock %}
+{% block link %}
+<link rel="stylesheet" href="../static/css/member.css" />
+{% endblock %}
+
+{% block body %}
+
+<div class="tabs">
+    <input type="radio" class="tabs__radio" name="tabs-example" id="tab1" checked>
+    <label for="tab1" class="tabs__label">歷史訂單</label>
+
+    <div class="tabs__content">
+        <div class="historyOrder">
+            <div class="historyOrder--header">
+                <div class="historyOrder--header__title">訂單編號</div>
+                <div class="historyOrder--header__title">訂購日期</div>
+                <div class="historyOrder--header__title">付款狀態</div>
+                <div class="historyOrder--header__title">訂單金額</div>
+            </div>
+            <!-- <div class="historyOrder--content">
+                <div class="historyOrder--content__item0"></div>
+                <div class="historyOrder--content__item1"></div>
+                <div class="historyOrder--content__item2"></div>
+                <div class="historyOrder--content__item3"></div>
+            </div> -->
+        </div>
+        <section class="historyOrderDetail">
+            <img class="historyOrderDetail--img"></img>
+            <div class="historyOrderDetail--trip">
+                <div class="historyOrderDetail--trip__number">訂單編號＃<span class="number"></span></div>
+                <div class="historyOrderDetail--trip__name">訂購姓名：<span class="name"></span></div>
+                <div class="historyOrderDetail--trip__email">電子郵件：<span class="email"></span></div>
+                <div class="historyOrderDetail--trip__phone">聯絡電話：<span class="phone"></span></div>
+                <div class="historyOrderDetail--trip__date">行程日期：<span class="date"></span></div>
+                <div class="historyOrderDetail--trip__time">行程時間：<span class="time"></span></div>
+                <div class="historyOrderDetail--trip__place">行程地點：<span class="place"></span></div>
+            </div>
+
+
+        </section>
+    </div>
+
+
+    <input type="radio" class="tabs__radio" name="tabs-example" id="tab2">
+    <!-- <label for="tab2" class="tabs__label">會員資料</label>
+    <div class="tabs__content">
+        <section class="memberInfo">
+            <div class="memberInfo--photo">
+                <img class="memberInfo--photo__img" src="" alt="">
+                <input type="file" class="memberInfo--photo__btn"></input>
+            </div>
+            <div div class="memberInfo--content">
+                <div class="memberInfo--content__name">姓名:</div>
+                <div class="memberInfo--content__email">E-mail:example@example.com</div>
+            </div>
+
+        </section>
+    </div> -->
+</div>
+
+
+<footer class="footerWord">
+    COPYRIGHT © 2022 台北一日遊
+</footer>
+
+<script type="text/javascript" src="../static/js/member.js"> </script>
+{% endblock %}
+
+</body>
+
+</html>

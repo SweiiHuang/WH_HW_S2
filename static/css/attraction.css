@@ -44,6 +44,7 @@
     width: 36px;
     height: 36px;
     background-image: url(../images/btn_leftArrow.png);
+    cursor: pointer;
 
 }
 
@@ -55,6 +56,7 @@
     width: 36px;
     height: 36px;
     background-image: url(../images/btn_rightArrow.png);
+    cursor: pointer;
 }
 
 .dot-container {
@@ -78,7 +80,7 @@
     height: 12px;
     border: 1px solid #FFFFFF;
     border-radius: 50%;
-    background-color: #000000;
+    background-color: #448899;
     margin: 2px;
 
 }
@@ -446,7 +448,7 @@ input[name="pickTime"] {
 
 @media(max-width:600px) {
     .slideshow-container {
-        width: 380px;
+        width: 100%;
     }
 
     .sectionRight {
