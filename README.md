@@ -5,7 +5,7 @@
 
 
 ## Demo
-Website : http://18.176.255.95:3000/
+Website : ~~http://18.176.255.95:3000/~~  (AWS account free tier expiration)
 
 Test account:
 |  **Account** | **testuser@testuser.com** |
